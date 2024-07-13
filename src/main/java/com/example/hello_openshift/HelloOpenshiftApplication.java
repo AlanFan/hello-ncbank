@@ -1,5 +1,7 @@
 package com.example.hello_openshift;
 
+import java.net.InetAddress;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,15 @@ public class HelloOpenshiftApplication {
 
 	@RequestMapping("/")
 	public String hi(){
-		return "hello...";
+		try {
+			InetAddress localHost = InetAddress.getLocalHost();
+		
+		String hostname = localHost.getHostName();
+		return "hello... from " + hostname ;
+		} catch (Exception e) {
+			return "";
+		}
+		
 	}
 
 }
